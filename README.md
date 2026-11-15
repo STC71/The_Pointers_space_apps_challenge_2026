@@ -68,11 +68,6 @@ The interface includes planet artwork, image flags and educational panels for
 energy, water and oxygen. Arabic, Japanese and Korean use bundled fonts selected
 by language; Arabic also uses right-to-left layout.
 
-Validation on 15 November 2026: **67 shared logic tests and 10 desktop UI tests
-pass**, including crew language changes and withdrawal confirmation in all ten
-languages. Desktop compilation passes as part of the test run. Android, browser
-runtime, real-device audio and live APOD/CORS checks remain pending.
-
 [↑ Back to top](#worst-case-outpost)
 
 ---

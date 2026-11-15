@@ -67,12 +67,6 @@ La interfaz incluye planetas, banderas como imágenes y fichas educativas de
 energía, agua y oxígeno. Las fuentes incluidas se aplican según el idioma; árabe
 también utiliza disposición de derecha a izquierda.
 
-Validación del 15 de noviembre de 2026: **67 pruebas de lógica y 10 de interfaz
-superadas**, incluidos el cambio de idioma de la tripulación y la confirmación
-de retirada en los diez idiomas. La compilación de escritorio forma parte de
-esta ejecución. Siguen pendientes Android, ejecución en navegador, audio real
-en dispositivos y APOD/CORS real.
-
 [↑ Volver arriba](#worst-case-outpost)
 
 ---
