@@ -50,6 +50,10 @@ cd path/to/The_Pointers_NASA_2026
 ./gradlew :composeApp:run
 ```
 
+You can also use `./Launch.command`: on Linux it uses `JAVA_HOME` or Java from
+`PATH`. The desktop icon is bundled from `imgs/icon-nobg.png` and is also used
+when building the `.deb` package on Linux.
+
 [↑ Back to top](#how-to-run--worst-case-outpost)
 
 ---
@@ -76,18 +80,21 @@ mkdir -p "$GRADLE_USER_HOME"
 
 ## 4. Windows (Desktop)
 
-1. Install **JDK 17** and set `JAVA_HOME`  
-2. Open **PowerShell** in the project folder:
+Install **JDK 17 or later** and set `JAVA_HOME` to the JDK folder, or make sure
+`java` is available in `PATH`. Double-click [Launch.bat](./Launch.bat) in File
+Explorer, or open **PowerShell** in the project folder and run:
 
 ```powershell
-.\gradlew.bat :composeApp:run
+.\Launch.bat
 ```
 
-If `gradlew.bat` is missing, generate the wrapper on another machine or use:
+The launcher starts the desktop application using the included Gradle wrapper;
+you do not need to install Gradle separately. The first run downloads dependencies
+and needs an Internet connection. Keep `gradlew.bat` and the `gradle/` folder
+alongside the launcher. If startup fails, the console stays open to show the error.
 
-```powershell
-gradle :composeApp:run
-```
+Additional Gradle options can be passed after the launcher name, for example
+`.\Launch.bat --offline` once dependencies have been downloaded.
 
 (Android Studio’s embedded JDK also works via the Gradle tool window → `composeApp` → `run`.)
 
@@ -96,6 +103,11 @@ gradle :composeApp:run
 ---
 
 ## 5. macOS (Desktop)
+
+Double-click `Launch.command` in Finder, or run `./Launch.command` in Terminal.
+The launcher detects Java 17 installed with Homebrew and configures the environment.
+
+If Java is already configured, you can also run:
 
 ```bash
 cd path/to/The_Pointers_NASA_2026

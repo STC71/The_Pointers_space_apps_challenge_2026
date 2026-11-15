@@ -129,7 +129,12 @@ Full platform instructions:
 - **[HOW_TO_RUN_ES.md](./HOW_TO_RUN_ES.md)** (Spanish)  
 - **[Testing guide (ES)](docs/PRUEBAS.md)** — coverage of the 61 logic tests and 5 UI tests and how to run, modify, or extend them.
 
-Quick Desktop test:
+On macOS, double-click [Launch.command](./Launch.command) in Finder. On Linux,
+run `./Launch.command` in Terminal. On Windows, double-click
+[Launch.bat](./Launch.bat) or run `.\Launch.bat` in PowerShell.
+Requires JDK 17 or later.
+
+Quick Desktop test with Gradle:
 
 ```bash
 export GRADLE_USER_HOME=/path/to/free/disk/gradle-home   # optional

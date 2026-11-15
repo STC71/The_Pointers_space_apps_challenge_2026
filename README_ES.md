@@ -122,6 +122,13 @@ Solo astronautas **NASA y ESA** (p. ej. Sally Ride, Mae Jemison, Peggy Whitson, 
 - **[HOW_TO_RUN.md](./HOW_TO_RUN.md)** — same in English  
 - **[Guía de pruebas](docs/PRUEBAS.md)** — qué comprueban las 61 pruebas de lógica y las 5 de interfaz y cómo ejecutarlas, modificarlas o añadir casos.
 
+En macOS, abre [Launch.command](./Launch.command) con doble clic en Finder.
+En Linux, ejecuta `./Launch.command` desde Terminal. En Windows, abre
+[Launch.bat](./Launch.bat) con doble clic o ejecuta `.\Launch.bat` en PowerShell.
+Requiere JDK 17 o superior.
+
+También puedes usar Gradle:
+
 ```bash
 ./gradlew :composeApp:run
 ```

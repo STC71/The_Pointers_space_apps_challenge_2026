@@ -7,6 +7,7 @@
  */
 
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.gradle.language.jvm.tasks.ProcessResources
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -113,6 +114,10 @@ android {
 }
 
 // Desktop packaging configuration
+tasks.named<ProcessResources>("desktopProcessResources") {
+    from(rootProject.file("imgs/icon-nobg.png"))
+}
+
 compose.resources {
     publicResClass = true
     packageOfResClass = "com.worstcase.outpost.resources"
@@ -122,10 +127,21 @@ compose.desktop {
     application {
         mainClass = "com.worstcase.outpost.MainKt"
 
+        // macOS uses the JVM's Dock icon rather than the window icon when running from Gradle.
+        if (System.getProperty("os.name").startsWith("Mac", ignoreCase = true)) {
+            jvmArgs += listOf(
+                "-Xdock:name=Worst Case Outpost",
+                "-Xdock:icon=${rootProject.file("imgs/icon-nobg.png").absolutePath}"
+            )
+        }
+
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "WorstCaseOutpost"
             packageVersion = "1.0.0"
+            linux {
+                iconFile.set(rootProject.file("imgs/icon-nobg.png"))
+            }
         }
     }
 }

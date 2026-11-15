@@ -50,6 +50,10 @@ chmod +x ./gradlew
 ./gradlew :composeApp:run
 ```
 
+También puedes usar `./Launch.command`: en Linux utiliza `JAVA_HOME` o el Java
+disponible en `PATH`. El icono de escritorio se incluye desde `imgs/icon-nobg.png`
+y también se usa al generar el paquete `.deb` en Linux.
+
 Si el home está lleno:
 
 ```bash
@@ -64,9 +68,23 @@ mkdir -p "$GRADLE_USER_HOME"
 
 ## 4. Windows (Desktop)
 
+Instala **JDK 17 o superior** y configura `JAVA_HOME` con la carpeta del JDK, o
+asegúrate de que `java` esté disponible en `PATH`. Abre [Launch.bat](./Launch.bat)
+con doble clic en el Explorador de archivos, o abre **PowerShell** en la carpeta
+del proyecto y ejecuta:
+
 ```powershell
-.\gradlew.bat :composeApp:run
+.\Launch.bat
 ```
+
+El lanzador inicia la aplicación de escritorio con el wrapper de Gradle incluido;
+no necesitas instalar Gradle por separado. La primera ejecución descarga las
+dependencias y necesita conexión a Internet. Conserva `gradlew.bat` y la carpeta
+`gradle/` junto al lanzador. Si el arranque falla, la consola queda abierta para
+mostrar el error.
+
+Puedes añadir opciones de Gradle al lanzador, por ejemplo
+`.\Launch.bat --offline` cuando las dependencias ya estén descargadas.
 
 O desde Android Studio: tarea Gradle `composeApp` → `run`.
 
@@ -82,10 +100,10 @@ Instala Java 17 si todavía no está disponible:
 brew install openjdk@17
 ```
 
-Abre `Ejecutar.command` con doble clic en Finder, o ejecútalo desde Terminal:
+Abre `Launch.command` con doble clic en Finder, o ejecútalo desde Terminal:
 
 ```bash
-./Ejecutar.command
+./Launch.command
 ```
 
 El lanzador detecta Java 17 instalado con Homebrew (Apple Silicon o Intel) y
