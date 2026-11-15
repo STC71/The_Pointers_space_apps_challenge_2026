@@ -6,6 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.worstcase.outpost.audio.AndroidSoundPlayer
 import com.worstcase.outpost.audio.AudioManager
+import com.worstcase.outpost.haptics.AndroidHapticsPlayer
+import com.worstcase.outpost.haptics.Haptics
 
 class MainActivity : ComponentActivity() {
     private lateinit var soundPlayer: AndroidSoundPlayer
@@ -16,6 +18,7 @@ class MainActivity : ComponentActivity() {
         AndroidUrlOpener.initialize(applicationContext)
         soundPlayer = AndroidSoundPlayer(applicationContext)
         AudioManager.initialize(soundPlayer)
+        Haptics.initialize(AndroidHapticsPlayer(applicationContext))
         setContent { App() }
     }
 

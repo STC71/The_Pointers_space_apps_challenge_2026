@@ -142,6 +142,15 @@ compose.desktop {
             linux {
                 iconFile.set(rootProject.file("imgs/icon-nobg.png"))
             }
+			macOS {
+                iconFile.set(rootProject.file("imgs/icon.icns"))
+                bundleID = "com.worstcase.outpost"
+            }
+            windows {
+                iconFile.set(rootProject.file("imgs/icon.ico"))
+                menuGroup = "Worst Case Outpost"
+                shortcut = true
+            }
         }
     }
 }

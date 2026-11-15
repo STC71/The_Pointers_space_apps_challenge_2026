@@ -32,6 +32,9 @@ import com.worstcase.outpost.ui.SettingsOverlay
 import com.worstcase.outpost.ui.WelcomeHomeScreen
 import com.worstcase.outpost.ui.DecisionReportDialog
 import com.worstcase.outpost.apod.rememberApodFrame
+import androidx.compose.runtime.LaunchedEffect
+import com.worstcase.outpost.haptics.HapticType
+import com.worstcase.outpost.haptics.Haptics
 
 @Composable
 fun App() {
@@ -136,7 +139,25 @@ fun App() {
                     }
                 }
 
-                if (!state.showSettings) {
+                // Vibración: nueva crisis
+				LaunchedEffect(state.activeCrisisOccurrence, state.showCrisisDialog) {
+    				if (state.showCrisisDialog && state.activeCrisisOccurrence != null) {
+        				Haptics.play(HapticType.WARNING)
+    				}
+				}
+
+				// Vibración: buena noticia
+				LaunchedEffect(state.activeGoodNews, state.showGoodNewsDialog) {
+    				if (state.showGoodNewsDialog && state.activeGoodNews != null) {
+        				Haptics.play(HapticType.SUCCESS)
+    				}
+				}
+
+				LaunchedEffect(state.currentScreen) {
+    				if (state.currentScreen == Screen.WELCOME_HOME) Haptics.play(HapticType.SUCCESS)
+				}
+
+				if (!state.showSettings) {
                     GlobalSettingsButton(
                         label = texts.settings,
                         onClick = { viewModel.setShowSettings(true) },
