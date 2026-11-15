@@ -6,7 +6,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.test.runTest
 import kotlin.test.*
 
-/** Controlled fixtures only. Authored but not executed, as requested. No NASA requests. */
+/** Controlled fixtures for APOD behavior; no NASA requests. */
 class ApodTest {
     private class Clock : ApodClock {
         var day = "2026-11-14"

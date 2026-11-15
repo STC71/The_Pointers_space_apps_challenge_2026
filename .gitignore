@@ -44,8 +44,10 @@ DerivedData/
 Pods/
 *.xcworkspace/xcuserdata/
 
-# Sistema operativo, registros y temporales
+# Metadatos de Finder (macOS)
 .DS_Store
+
+# Sistema operativo, registros y temporales
 Thumbs.db
 *.log
 *.tmp

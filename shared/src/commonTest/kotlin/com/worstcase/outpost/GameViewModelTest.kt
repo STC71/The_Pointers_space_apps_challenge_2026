@@ -16,7 +16,7 @@ import com.worstcase.outpost.presentation.missionLessons
 import kotlin.random.Random
 import kotlin.test.*
 
-/** Written for static review only; these tests have not been executed. */
+/** Regression coverage for the mission coordinator and its guarded transitions. */
 class GameViewModelTest {
     private class RecordingAudio : SoundPlayer {
         val events = mutableListOf<String>()
@@ -276,10 +276,52 @@ class GameViewModelTest {
         assertEquals(before.activeCrisis!!.options.map { it.id }, after.activeCrisis!!.options.map { it.id })
         assertTrue(assertNotNull(after.activeCrisis).options.none { it.usesAbandonedHardware })
         assertEquals(before.resources, after.resources)
-        assertEquals(before.crew, after.crew)
+        assertEquals(before.crew.map { it.copy(role = "", bio = "") },
+            after.crew.map { it.copy(role = "", bio = "") })
         assertEquals(MockData.getAnalogs(AppLanguage.SPANISH).first { it.id == before.selectedAnalog!!.id }.name,
             after.selectedAnalog!!.name)
         assertNoEffect(vm) { vm.updateMissionPlan(MissionPlan(planHardwareReuse = true)) }
+    }
+
+    @Test
+    fun languageChangesRefreshCrewCopyWithoutResettingVitalsOrConsumingRandomness() {
+        val vm = GameViewModel(Random(42))
+        val control = GameViewModel(Random(42))
+        for (game in listOf(vm, control)) {
+            startMission(game, playerName = "Neil Armstrong")
+            game.triggerCrisis()
+            resolveActive(game, game.state.value.activeCrisis!!.options.first().id)
+        }
+        val before = vm.state.value
+        assertEquals(before, control.state.value)
+        for (language in listOf(AppLanguage.SPANISH, AppLanguage.JAPANESE, AppLanguage.ENGLISH)) {
+            vm.setLanguage(language)
+            val after = vm.state.value
+            assertEquals(before.crew.map { it.copy(role = "", bio = "") },
+                after.crew.map { it.copy(role = "", bio = "") })
+            assertEquals(before.resources, after.resources)
+            assertEquals(before.lastCrewDeltas, after.lastCrewDeltas)
+            assertEquals(before.missionDay, after.missionDay)
+            assertSame(before.lastDecisionReport, after.lastDecisionReport)
+            val player = after.crew.single { it.id == "player" }
+            assertEquals(if (language == AppLanguage.SPANISH) "Tripulante en prácticas" else "Trainee Astronaut", player.role)
+            assertEquals(if (language == AppLanguage.SPANISH) "Miembro de la tripulación de entrenamiento" else "Training crew member", player.bio)
+            val legends = after.crew.filter { it.id != "player" }
+            assertTrue(legends.all { it.role.isNotBlank() && it.bio.isNotBlank() })
+            if (language == AppLanguage.SPANISH) {
+                legends.forEach { member ->
+                    val original = before.crew.single { it.id == member.id }
+                    assertNotEquals(original.role, member.role)
+                    assertNotEquals(original.bio, member.bio)
+                }
+            } else {
+                assertEquals(before.crew, after.crew)
+            }
+        }
+        // The same following event proves that translating did not draw another crew or event.
+        vm.triggerCrisis()
+        control.triggerCrisis()
+        assertEquals(control.state.value, vm.state.value)
     }
 
     @Test

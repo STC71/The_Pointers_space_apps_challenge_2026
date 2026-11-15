@@ -1645,6 +1645,23 @@ object MockData {
         HistoricalAstronaut("Jessica Watkins", "Mission Specialist", "Especialista de misión", "NASA geologist astronaut; ISS long-duration crew.", "Astronauta geóloga de la NASA; tripulación larga en la ISS.")
     )
 
+    /** Refresh copy only: never redraw the crew or reset mission health and wellbeing. */
+    fun localizeCrewMember(member: CrewMember, language: AppLanguage): CrewMember {
+        val spanish = language == AppLanguage.SPANISH
+        if (member.id == "player") {
+            return member.copy(
+                bio = if (spanish) "Miembro de la tripulación de entrenamiento" else "Training crew member",
+                role = if (spanish) "Tripulante en prácticas" else "Trainee Astronaut"
+            )
+        }
+        // Names in the historical catalog are stable across languages; astroN is only a mission slot.
+        val person = historicalAstronauts.find { it.name == member.name } ?: return member
+        return member.copy(
+            bio = if (spanish) person.bioEs else person.bioEn,
+            role = if (spanish) person.roleEs else person.roleEn
+        )
+    }
+
     fun createInitialCrew(
         difficulty: Difficulty = Difficulty.JUNIOR,
         playerName: String = "",
@@ -1679,7 +1696,6 @@ object MockData {
             return (initialStatus + variation + healthBonus).coerceIn(0, 100)
         }
 
-        val spanish = language == AppLanguage.SPANISH
         val count = if (playerName.trim().isEmpty()) 3 else 2
         val picked = historicalAstronauts.shuffled(random).take(count)
         // Small per-astronaut variation so health monitors look realistic
@@ -1696,9 +1712,7 @@ object MockData {
                 name = person.name,
                 sleep = vary(initialSleepAdj, 12, seed),
                 stress = vary(initialStressAdj, 15, seed + 3),
-                status = initialHealth(seed + 7, 10),
-                bio = if (spanish) person.bioEs else person.bioEn,
-                role = if (spanish) person.roleEs else person.roleEn
+                status = initialHealth(seed + 7, 10)
             )
         }
 
@@ -1713,13 +1727,11 @@ object MockData {
                     name = trimmed,
                     sleep = vary(initialSleepAdj, 10, seed),
                     stress = vary(initialStressAdj, 12, seed + 5),
-                    status = initialHealth(seed + 9, 8),
-                    bio = if (spanish) "Miembro de la tripulación de entrenamiento" else "Training crew member",
-                    role = if (spanish) "Tripulante en prácticas" else "Trainee Astronaut"
+                    status = initialHealth(seed + 9, 8)
                 )
             )
         }
-        return crew
+        return crew.map { localizeCrewMember(it, language) }
     }
 
     fun createInitialResources(

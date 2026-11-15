@@ -52,26 +52,26 @@ It trains resource management, crew wellbeing, crisis decision-making and the **
 ## 3. Features
 
 - Intro presentation (3 slides) before the main menu  
-- Daily NASA APOD background in the intro/menu, with a local fallback and last valid image cache ([details, ES](docs/APOD_BACKGROUND.md))
+- Daily NASA APOD background in the intro/menu, with a local fallback and last valid image cache
 - **10 languages** (UI + settings + intro + lessons)  
 - **Global Settings** on every screen: language + mission audio  
 - Optional **player name** as Trainee Astronaut in the crew  
 - Explicit rest/stress effects, design tradeoffs and recharge, science progress and a 0–100 score
-- Read-only Houston consequence previews and compact Before / Actual reports ([details, ES](docs/CONSEQUENCE_FORECASTS.md))
-- Random **NASA / ESA** crew (many women astronauts included) with **role + short bio**  
+- Read-only Houston consequence previews and compact Before / Actual reports
+- Random **NASA / ESA** crew (many women astronauts included) with **role + short bio**, refreshed when the language changes (ES/EN catalog; English fallback for other languages)
+- Confirmation before withdrawing from a mission
 - Crisis dialog with scroll, AI copilot text, hardware heritage options  
 - Synthetic telemetry audio (Quindar, alarms, habitat, short theme motif)  
 - Targets: **Desktop (JVM)**, **Android**, optional **Wasm**  
 
-The reconciled version preserves the Experimental mission rules, Houston previews,
-APOD and audio lifecycle, together with main's planet artwork, image flags and
-energy/water/oxygen educational panels. Arabic, Japanese and Korean use bundled
-fonts selected by language; Arabic also uses right-to-left layout.
+The interface includes planet artwork, image flags and educational panels for
+energy, water and oxygen. Arabic, Japanese and Korean use bundled fonts selected
+by language; Arabic also uses right-to-left layout.
 
-Validation on 15 November 2026: 61 shared logic tests and 5 desktop UI tests pass;
-desktop and Kotlin/Wasm compilation pass, and the web production package builds. Android, real-device audio, and live
-APOD/CORS checks remain pending. See [testing and integration notes (ES)](docs/PRUEBAS.md)
-and [audio behavior and limitations (ES)](docs/AUDIO_AND_LINKS.md).
+Validation on 15 November 2026: **67 shared logic tests and 10 desktop UI tests
+pass**, including crew language changes and withdrawal confirmation in all ten
+languages. Desktop compilation passes as part of the test run. Android, browser
+runtime, real-device audio and live APOD/CORS checks remain pending.
 
 [↑ Back to top](#worst-case-outpost)
 
@@ -94,7 +94,7 @@ and [audio behavior and limitations (ES)](docs/AUDIO_AND_LINKS.md).
 shared/          business logic, ViewModel, mock data, i18n, audio API
 composeApp/      UI + Android / Desktop / Wasm entry points
 gradle/          version catalog + wrapper
-imgs/            logos
+imgs/            desktop application icon
 README.md / README_ES.md
 HOW_TO_RUN.md / HOW_TO_RUN_ES.md
 ```
@@ -127,7 +127,6 @@ Full platform instructions:
 
 - **[HOW_TO_RUN.md](./HOW_TO_RUN.md)** (English)  
 - **[HOW_TO_RUN_ES.md](./HOW_TO_RUN_ES.md)** (Spanish)  
-- **[Testing guide (ES)](docs/PRUEBAS.md)** — coverage of the 61 logic tests and 5 UI tests and how to run, modify, or extend them.
 
 On macOS, double-click [Launch.command](./Launch.command) in Finder. On Linux,
 run `./Launch.command` in Terminal. On Windows, double-click
@@ -164,7 +163,7 @@ Highlight: multi-language, difficulty, NASA/ESA crew, abandoned hardware narrati
 
 Educational project for **NASA Space Apps Challenge 2026**.  
 NASA/ESA names and mission facts are used for **educational storytelling**.  
-Optional analog photos: prefer [images.nasa.gov](https://images.nasa.gov) and ESA media with attribution (see `composeApp/.../composeResources/drawable/README_IMAGES.md`).
+Optional analog photos: prefer [images.nasa.gov](https://images.nasa.gov) and ESA media with attribution.
 
 Team: **The Pointers** · Worst Case Outpost  
 

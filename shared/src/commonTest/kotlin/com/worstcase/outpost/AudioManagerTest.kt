@@ -11,7 +11,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-/** Regression cases added for static review; not executed as part of this change. */
+/** Regression coverage for audio coordination using a controlled player. */
 class AudioManagerTest {
     private class RecordingPlayer : SoundPlayer {
         var musicStarts = 0

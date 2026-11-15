@@ -8,7 +8,7 @@ import com.worstcase.outpost.presentation.Screen
 import kotlin.random.Random
 import kotlin.test.*
 
-/** Authored for this balance revision; not executed as part of the change. */
+/** Regression coverage for mission balance and shared decision rules. */
 class MissionRulesTest {
     private val crew = listOf(
         CrewMember("astro1", "Crew", sleep = 40, stress = 60, status = 70),

@@ -221,6 +221,7 @@ class GameViewModel internal constructor(
                 currentLanguage = language,
                 selectedAnalog = updatedAnalog,
                 activeCrisis = updatedCrisis,
+                crew = currentState.crew.map { MockData.localizeCrewMember(it, language) },
                 // Forecasts contain mechanical snapshots, so changing copy cannot invalidate them.
                 aiAssessment = if (currentState.aiAssessment != null && updatedCrisis != null)
                     MockData.evaluateAiCopilot(updatedCrisis, currentState.resources, language,

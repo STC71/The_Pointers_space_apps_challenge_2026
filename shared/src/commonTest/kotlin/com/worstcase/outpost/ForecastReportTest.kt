@@ -11,7 +11,7 @@ import com.worstcase.outpost.presentation.Screen
 import kotlin.random.Random
 import kotlin.test.*
 
-/** Authored for static review only; application and tests were not run. */
+/** Regression coverage for forecasts, decision reports and their side effects. */
 class ForecastReportTest {
     private class CountingRandom(seed: Int) : Random() {
         private val delegate = Random(seed)

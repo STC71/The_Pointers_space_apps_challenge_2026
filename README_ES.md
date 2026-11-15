@@ -55,23 +55,23 @@ Entrena gestión de recursos, bienestar de tripulación, crisis y **reutilizaci�
 - **10 idiomas** + ajustes globales (idioma y audio)  
 - Nombre del jugador como **Tripulante en prácticas**  
 - Efectos explícitos de descanso y estrés; diseño con costes y recargas; ciencia y puntuación sobre 100
-- Previsiones de consulta en Houston y resumen breve Antes / Real tras cada decisión ([detalle](docs/CONSEQUENCE_FORECASTS.md))
-- Fondo NASA APOD en introducción y menú, con respaldo local y caché de la última imagen válida ([detalle](docs/APOD_BACKGROUND.md))
-- Tripulación aleatoria **solo NASA/ESA** (con muchas astronautas) + **cargo** y bio  
+- Previsiones de consulta en Houston y resumen breve Antes / Real tras cada decisión
+- Fondo NASA APOD en introducción y menú, con respaldo local y caché de la última imagen válida
+- Tripulación aleatoria **solo NASA/ESA** (con muchas astronautas) + **cargo** y bio, actualizados al cambiar de idioma (catálogo ES/EN; inglés como respaldo para los demás idiomas)
+- Confirmación antes de retirarse de una misión
 - Crisis con scroll, copiloto IA textual y herencia de hardware  
 - Audio sintético (Quindar, alarmas, hábitat, motivo “épico” corto)  
 - Desktop, Android y Wasm opcional  
 
-Esta reconciliación conserva las reglas de misión, Houston, APOD y el ciclo de audio
-de Experimental, junto con los planetas, banderas como imágenes y fichas educativas
-de energía, agua y oxígeno de main. Las fuentes incluidas se aplican según el idioma;
-árabe también utiliza disposición de derecha a izquierda.
+La interfaz incluye planetas, banderas como imágenes y fichas educativas de
+energía, agua y oxígeno. Las fuentes incluidas se aplican según el idioma; árabe
+también utiliza disposición de derecha a izquierda.
 
-Validación del 15 de noviembre de 2026: **61 pruebas de lógica y 5 de interfaz
-superadas**, con compilación de escritorio y Kotlin/Wasm correcta y paquete web de producción generado. Siguen pendientes
-Android, audio real en dispositivos y APOD/CORS real. Consulta
-[pruebas y notas de integración](docs/PRUEBAS.md) y
-[comportamiento y limitaciones del audio](docs/AUDIO_AND_LINKS.md).
+Validación del 15 de noviembre de 2026: **67 pruebas de lógica y 10 de interfaz
+superadas**, incluidos el cambio de idioma de la tripulación y la confirmación
+de retirada en los diez idiomas. La compilación de escritorio forma parte de
+esta ejecución. Siguen pendientes Android, ejecución en navegador, audio real
+en dispositivos y APOD/CORS real.
 
 [↑ Volver arriba](#worst-case-outpost)
 
@@ -120,7 +120,6 @@ Solo astronautas **NASA y ESA** (p. ej. Sally Ride, Mae Jemison, Peggy Whitson, 
 
 - **[HOW_TO_RUN_ES.md](./HOW_TO_RUN_ES.md)** — instrucciones detalladas en español  
 - **[HOW_TO_RUN.md](./HOW_TO_RUN.md)** — same in English  
-- **[Guía de pruebas](docs/PRUEBAS.md)** — qué comprueban las 61 pruebas de lógica y las 5 de interfaz y cómo ejecutarlas, modificarlas o añadir casos.
 
 En macOS, abre [Launch.command](./Launch.command) con doble clic en Finder.
 En Linux, ejecuta `./Launch.command` desde Terminal. En Windows, abre

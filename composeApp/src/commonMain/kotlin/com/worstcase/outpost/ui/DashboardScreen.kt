@@ -53,6 +53,7 @@ fun DashboardScreen(
 ) {
     val texts = Strings.get(currentLanguage)
     var eduInfoKey by remember { mutableStateOf<String?>(null) }
+    var showWithdrawalConfirmation by remember { mutableStateOf(false) }
 
     val analogPhoto = state.selectedAnalog?.id?.let { photoForAnalogId(it) }
 
@@ -205,10 +206,34 @@ fun DashboardScreen(
                 ) { Text(texts.view360, fontSize = 13.sp) }
                 Spacer(modifier = Modifier.height(8.dp))
                 TextButton(
-                    onClick = onEndMission,
+                    onClick = { showWithdrawalConfirmation = true },
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(texts.withdrawMission, color = Color.White.copy(alpha = 0.85f))
+                }
+            }
+
+            if (showWithdrawalConfirmation) {
+                ScrollablePanelDialog(
+                    title = texts.withdrawConfirmationTitle,
+                    onDismiss = { showWithdrawalConfirmation = false },
+                    dismissOnClickOutside = false,
+                    actions = {
+                        Button(
+                            onClick = {
+                                showWithdrawalConfirmation = false
+                                onEndMission()
+                            },
+                            modifier = Modifier.fillMaxWidth(),
+                            colors = ButtonDefaults.buttonColors(containerColor = AlertOrange)
+                        ) { Text(texts.withdrawMission) }
+                        TextButton(
+                            onClick = { showWithdrawalConfirmation = false },
+                            modifier = Modifier.fillMaxWidth()
+                        ) { Text(texts.continueMission) }
+                    }
+                ) {
+                    Text(texts.withdrawConfirmationBody, color = TextPrimary)
                 }
             }
 

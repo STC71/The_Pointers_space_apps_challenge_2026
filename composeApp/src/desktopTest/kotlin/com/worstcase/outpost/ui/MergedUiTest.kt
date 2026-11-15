@@ -17,6 +17,7 @@ import com.worstcase.outpost.data.TrainingContent
 import com.worstcase.outpost.i18n.TrainingCopy
 import com.worstcase.outpost.domain.Difficulty
 import com.worstcase.outpost.domain.PlanetaryTarget
+import com.worstcase.outpost.domain.MissionEndReason
 import com.worstcase.outpost.i18n.AppLanguage
 import com.worstcase.outpost.i18n.Strings
 import com.worstcase.outpost.presentation.GameViewModel
@@ -73,6 +74,37 @@ class MergedUiTest {
             assertEquals(before, vm.state.value)
         }
         saveScreenshot("dashboard", "dashboard-es")
+    }
+
+    @Test fun withdrawalRequiresConfirmationAndCancelKeepsTheMissionInEveryLanguage() = narrowViewport {
+        val vm = preparedMission()
+        rule.setContent {
+            val state by vm.state.collectAsState()
+            WorstCaseTheme(language = state.currentLanguage) {
+                DashboardScreen(state, state.currentLanguage, vm::triggerCrisis, vm::resolveCrisis, vm::requestEndMission)
+            }
+        }
+        for (language in AppLanguage.entries) {
+            rule.runOnIdle { vm.setLanguage(language) }
+            val before = vm.state.value
+            val texts = Strings.get(language)
+            rule.onNodeWithText(texts.withdrawMission).performScrollTo().performClick()
+            rule.onNodeWithText(texts.withdrawConfirmationTitle).assertIsDisplayed()
+            rule.onNodeWithText(texts.withdrawConfirmationBody).assertExists()
+            rule.onNodeWithText(texts.continueMission).assertIsDisplayed().performClick()
+            rule.onNodeWithText(texts.withdrawConfirmationTitle).assertDoesNotExist()
+            rule.runOnIdle { assertEquals(before, vm.state.value) }
+        }
+        rule.runOnIdle { vm.setLanguage(AppLanguage.SPANISH) }
+        val texts = Strings.get(AppLanguage.SPANISH)
+        rule.onNodeWithText(texts.withdrawMission).performScrollTo().performClick()
+        saveScreenshot(rule.onNode(isDialog()), "withdrawal-confirmation-es")
+        rule.onNode(hasText(texts.withdrawMission) and hasAnyAncestor(isDialog()))
+            .assertIsDisplayed().performClick()
+        rule.runOnIdle {
+            assertEquals(Screen.DEBRIEF, vm.state.value.currentScreen)
+            assertEquals(MissionEndReason.Withdrawal, vm.state.value.result!!.endReason)
+        }
     }
 
     @Test fun settingsUseImageFlagsAndKeepLanguageAndMuteCallbacks() = narrowViewport {
