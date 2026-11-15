@@ -1,0 +1,52 @@
+# Gradle
+.gradle/
+build/
+!**/src/**/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Kotlin
+.kotlin/
+*.klib
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.fleet/
+.vscode/
+
+# Android
+local.properties
+*.apk
+*.aab
+*.ap_
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Claves y secretos
+*.jks
+*.keystore
+*.pem
+.env
+secrets.properties
+google-services.json
+
+# Web
+**/node_modules/
+kotlin-js-store/
+
+# iOS / Xcode
+xcuserdata/
+*.xcuserstate
+DerivedData/
+Pods/
+*.xcworkspace/xcuserdata/
+
+# Sistema operativo, registros y temporales
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+hs_err_pid*
