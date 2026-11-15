@@ -77,11 +77,11 @@ del proyecto y ejecuta:
 .\Launch.bat
 ```
 
-El lanzador inicia la aplicación de escritorio con el wrapper de Gradle incluido;
-no necesitas instalar Gradle por separado. La primera ejecución descarga las
-dependencias y necesita conexión a Internet. Conserva `gradlew.bat` y la carpeta
-`gradle/` junto al lanzador. Si el arranque falla, la consola queda abierta para
-mostrar el error.
+`Launch.bat` integra el arranque del wrapper de Gradle e inicia directamente la
+aplicación de escritorio; no necesitas instalar Gradle por separado. La primera
+ejecución descarga las dependencias y necesita conexión a Internet. Conserva la
+carpeta `gradle/` junto al lanzador. Si el arranque falla, la consola queda abierta
+para mostrar el error.
 
 Puedes añadir opciones de Gradle al lanzador, por ejemplo
 `.\Launch.bat --offline` cuando las dependencias ya estén descargadas.

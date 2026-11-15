@@ -88,10 +88,11 @@ Explorer, or open **PowerShell** in the project folder and run:
 .\Launch.bat
 ```
 
-The launcher starts the desktop application using the included Gradle wrapper;
-you do not need to install Gradle separately. The first run downloads dependencies
-and needs an Internet connection. Keep `gradlew.bat` and the `gradle/` folder
-alongside the launcher. If startup fails, the console stays open to show the error.
+`Launch.bat` includes the Gradle wrapper startup logic and launches the desktop
+application directly; you do not need to install Gradle separately. The first run
+downloads dependencies and needs an Internet connection. Keep the `gradle/`
+folder alongside the launcher. If startup fails, the console stays open to show
+the error.
 
 Additional Gradle options can be passed after the launcher name, for example
 `.\Launch.bat --offline` once dependencies have been downloaded.
