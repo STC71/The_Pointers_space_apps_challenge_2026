@@ -28,12 +28,12 @@ fun BackButton(
             tint = NasaAccent,
             modifier = Modifier.size(20.dp)
         )
-        Spacer(modifier = Modifier.width(6.dp))
         Text(
             text = label,
             color = NasaAccent,
             fontSize = 13.sp,
             fontWeight = FontWeight.Medium
         )
+        Spacer(modifier = Modifier.width(6.dp))
     }
 }
