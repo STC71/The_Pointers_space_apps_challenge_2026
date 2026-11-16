@@ -15,9 +15,10 @@
 5. [Project structure](#5-project-structure)
 6. [Languages](#6-languages)
 7. [Crew & heritage](#7-crew--heritage)
-8. [Run the project](#8-run-the-project)
-9. [Submission notes](#9-submission-notes)
-10. [License & credits](#10-license--credits)
+8. [Installation](#8-installation)
+9. [Run the project](#9-run-the-project)
+10. [Submission notes](#10-submission-notes-space-apps)
+11. [License & credits](#11-license--credits)
 
 [↑ Back to top](#worst-case-outpost)
 
@@ -116,7 +117,11 @@ Crew members are drawn only from **NASA** and **ESA** (e.g. Sally Ride, Mae Jemi
 
 ---
 
-## 8. Run the project
+## 8. Installation
+
+The applicacion is available for <br> mobile (Android) </br> and <br>desktop</br> in the [Releases page](https://github.com/STC71/The_Pointers_space_apps_challenge_2026/releases/tag/ReleaseTest)
+
+## 9. Run the project
 
 Full platform instructions:
 
@@ -139,7 +144,7 @@ export GRADLE_USER_HOME=/path/to/free/disk/gradle-home   # optional
 
 ---
 
-## 9. Submission notes (Space Apps)
+## 10. Submission notes (Space Apps)
 
 Suggested demo path for judges (≈3 minutes):
 
@@ -154,7 +159,7 @@ Highlight: multi-language, difficulty, NASA/ESA crew, abandoned hardware narrati
 
 ---
 
-## 10. License & credits
+## 11. License & credits
 
 Educational project for **NASA Space Apps Challenge 2026**.  
 NASA/ESA names and mission facts are used for **educational storytelling**.  
