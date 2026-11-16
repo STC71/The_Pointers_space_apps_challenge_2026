@@ -119,7 +119,7 @@ Crew members are drawn only from **NASA** and **ESA** (e.g. Sally Ride, Mae Jemi
 
 ## 8. Installation
 
-The applicacion is available for <br> mobile (Android) </br> and <br>desktop</br> in the [Releases page](https://github.com/STC71/The_Pointers_space_apps_challenge_2026/releases/tag/ReleaseTest)
+The applicacion is available for <strong> mobile (Android) </strong> and <strong>desktop</strong> in the [Releases page](https://github.com/STC71/The_Pointers_space_apps_challenge_2026/releases/tag/ReleaseTest)
 
 ## 9. Run the project
 
